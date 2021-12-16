@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    # authentication
+    'social_django',
+
+    # custom apps
+    'home',
+    'accounts',
 ]
+
+
+AUTH_USER_MODEL = 'accounts.User'
+SOCIAL_AUTH_USER_MODEL = 'accounts.User'
+
+
+AUTHENTICATION_BACKENDS = (
+    'accounts.backend.MyBackend',
+    'social_core.backends.azuread_tenant.AzureADTenantOAuth2',
+    'social_core.backends.azuread.AzureADOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'lib_management.urls'
@@ -62,6 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # social auth
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -69,7 +95,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lib_management.wsgi.application'
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '159188110704-n5fh75ihaejro3i7bkehpqsra1pnfu3o.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
+
+SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_KEY = '932e8c5e-e1cc-47b2-913a-5b1ed842d80b'
+SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_SECRET = 'vVg7Q~Wv4X_ysFXpg7aT3XolzERX1Ps71tZe6'
+
+
+SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_TENANT_ID = '6b8b8296-bdff-4ad8-93ad-84bcbf3842f5'
+
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'accounts.pipeline.create_user',
+)
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -79,7 +127,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -123,3 +170,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = '/accounts/login'
+LOGOUT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
