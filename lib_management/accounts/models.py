@@ -5,24 +5,26 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, roll_no, name,dept, email, password=None):
+    def create_user(self, roll_no, name,dept, email,linkedin, password=None):
         user = self.model(
             roll_no=roll_no,
             name=name,
             dept = dept,
-            email=email)
+            email=email,
+            linkedin = linkedin)
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, roll_no, dept ,name, email, password=None):
+    def create_superuser(self, roll_no, dept ,name, email,linkedin, password=None):
         user = self.create_user(
             roll_no=roll_no,
             name=name,
             email=email,
             dept = dept,
-            password=password
+            password=password,
+            linkedin = linkedin
         )
         user.is_admin = True
         user.is_staff = True
