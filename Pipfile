@@ -7,6 +7,9 @@ name = "pypi"
 django = "*"
 social-auth-app-django = "*"
 pillow = "*"
+msal = "*"
+pyyaml = "*"
+python-dateutil = "*"
 
 [dev-packages]
 
