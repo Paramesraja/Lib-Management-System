@@ -1,0 +1,14 @@
+.form-group {
+  margin-left: 30vh;
+  margin-right: 30vh;
+}
+
+.btn-primary {
+  margin-left: 30vh;
+  margin-right: 30vh;
+}
+
+body {
+  padding-top: 15vh;
+  background-color: slategrey;
+}
