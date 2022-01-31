@@ -1,0 +1,79 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+{% block title %}
+Add new book
+{% endblock%}
+{% block body %}
+<div class="container mt-2 pt-5 ">
+    <div class="card  justify-content-center ">
+        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <div class="text-center mt-1 mb-3">
+                <a href="/" class="logo d-flex align-items-center"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    <img src="{% static 'dashboard/img/logo.png' %}" alt="">
+                    <span class="d-none d-lg-block">Library</span>
+                </a>
+            </div>
+
+            <form class="row g-3" method="post" action="">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="bookid" name="bookid" placeholder="Bookid">
+                        <label for="bookid"> Book id </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Book Name">
+                        <label for="name">Book Name</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Price">
+                        <label for="price">Price</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="publication" name="publication"
+                               placeholder="Publication">
+                        <label for="publication">Publication</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Author">
+                        <label for="author">Author</label>
+                        <small id="emailHelp" class="form-text text-muted">Use Comma(,) to separate multiple
+                            authors</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
+                        <label for="isbn">ISBN</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="copies" name="copies" placeholder="No. of Copies" value="1">
+                        <label for="copies">No. of Copies</label>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form><!-- End floating Labels Form -->
+        </div>
+    </div>
+</div>
+{% endblock%}

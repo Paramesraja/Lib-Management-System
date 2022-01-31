@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from home.models import Student
+from .models import *
 
 
 # Create your views here.
@@ -33,6 +34,45 @@ def profile(request):
         return render(request, 'dashboard/profile.html', {'student': student})
     else:
         return redirect('/')
+
+
+def view_book(request):
+    if request.session.get('roll_no'):
+        student = Student.objects.get(roll_no=request.session['roll_no'])
+        return render(request, 'dashboard/view.html', {'student': student})
+    else:
+        return redirect('/')
+
+
+def add_book(request):
+    if request.session.get('roll_no'):
+        student = Student.objects.get(roll_no=request.session['roll_no'])
+        if student.is_admin:
+            if request.method == "POST":
+                bookid = request.POST['bookid']
+                name = request.POST['name']
+                price = request.POST['price']
+                publication = request.POST['publication']
+                author = request.POST['author']
+                isbn = request.POST['isbn']
+                desc = request.POST['description']
+                copies = request.POST['copies']
+
+                book = Book(bookid=bookid, title=name, price=price, desc=desc, publication=publication, isbn=isbn)
+                book.save()
+
+                for i in range(1, int(copies) + 1):
+                    copy = Copy(bookid=book, copy_no=i)
+                    copy.save()
+
+                author = author.split(',')
+                for i in author:
+                    aut = Author(bookid=book, author=i)
+                    aut.save()
+
+            return render(request, 'dashboard/add_book.html', {'student': student})
+
+    return redirect('/')
 
 
 def error404(request, exception):
