@@ -1,17 +1,9 @@
-from django.shortcuts import render
-from accounts.models import User
-from django.contrib.auth import logout
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
-# Create your views here.
+
 def home(request):
-    if request.method == 'POST':
-        logout(request)
-    try:
-        user = request.user
-    except User.DoesNotExist:
-        print("executing")
-        user = None
-
-    return render(request,'home/index.html',{
-        'user':user
-    })
+    if request.session.get('roll_no'):
+        return redirect('/me')
+    else:
+        return render(request, 'home/home.html')

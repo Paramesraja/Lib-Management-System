@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-hxxh))=7bo96(bk)gvd$bwu__n!j9yw++pbpz+q@$s)rmzwxsn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,18 +45,14 @@ INSTALLED_APPS = [
 
     # custom apps
     'home',
-    'accounts',
+    'dashboard',
 ]
 
 
-AUTH_USER_MODEL = 'accounts.User'
-SOCIAL_AUTH_USER_MODEL = 'accounts.User'
 
 
 AUTHENTICATION_BACKENDS = (
-    'accounts.backend.MyBackend',
     'social_core.backends.azuread_tenant.AzureADTenantOAuth2',
-    'social_core.backends.azuread.AzureADOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -98,10 +94,8 @@ WSGI_APPLICATION = 'lib_management.wsgi.application'
 
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_KEY = '932e8c5e-e1cc-47b2-913a-5b1ed842d80b'
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_SECRET = 'vVg7Q~Wv4X_ysFXpg7aT3XolzERX1Ps71tZe6'
-
-
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_TENANT_ID = '6b8b8296-bdff-4ad8-93ad-84bcbf3842f5'
-SOCIAL_AUTH_AZUREAD_OAUTH2_RESOURCE = 'https://graph.microsoft.com/User.Read.All'
+
 
 
 SOCIAL_AUTH_PIPELINE = (
@@ -109,7 +103,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
     'social_core.pipeline.user.get_username',
-    'accounts.pipeline.create_user',
+    'home.pipeline.create_user',
     'social_core.pipeline.social_auth.social_user',
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
@@ -164,13 +158,31 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/'
 LOGOUT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/me'
 
+
+# email
+EMAIL_HOST = 'smtp-mail.outlook.com'
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'dhanushkumarganapathy@outlook.com'
+
+EMAIL_HOST_PASSWORD = 'Access denied!!'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
