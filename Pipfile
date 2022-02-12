@@ -10,6 +10,7 @@ pillow = "*"
 msal = "*"
 pyyaml = "*"
 python-dateutil = "*"
+razorpay = "*"
 
 [dev-packages]
 

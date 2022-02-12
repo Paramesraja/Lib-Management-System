@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,8 +25,7 @@ SECRET_KEY = 'django-insecure-hxxh))=7bo96(bk)gvd$bwu__n!j9yw++pbpz+q@$s)rmzwxsn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -39,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     # authentication
     'social_django',
 
@@ -47,9 +44,6 @@ INSTALLED_APPS = [
     'home',
     'dashboard',
 ]
-
-
-
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.azuread_tenant.AzureADTenantOAuth2',
@@ -91,12 +85,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lib_management.wsgi.application'
 
-
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_KEY = '932e8c5e-e1cc-47b2-913a-5b1ed842d80b'
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_SECRET = 'vVg7Q~Wv4X_ysFXpg7aT3XolzERX1Ps71tZe6'
 SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_TENANT_ID = '6b8b8296-bdff-4ad8-93ad-84bcbf3842f5'
-
-
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -138,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -152,12 +142,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 # media
 MEDIA_URL = '/media/'
@@ -168,11 +156,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 LOGIN_URL = '/'
 LOGOUT_URL = '/'
 LOGIN_REDIRECT_URL = '/me'
-
 
 # email
 EMAIL_HOST = 'smtp-mail.outlook.com'
@@ -186,3 +172,6 @@ EMAIL_HOST_USER = 'dhanushkumarganapathy@outlook.com'
 EMAIL_HOST_PASSWORD = 'Access denied!!'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+RAZOR_KEY_ID = 'rzp_test_u7deuTCyVkMz9G'
+RAZOR_KEY_SECRET = 'R1GpzfJTzkDwVJpt2O0kHdsI'

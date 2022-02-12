@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Student(models.Model):
     roll_no = models.TextField(primary_key=True, verbose_name="Roll No", max_length=8,
@@ -20,3 +21,22 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name + " " + self.roll_no
+
+
+class Donate(models.Model):
+    status_choices = [
+        (1, "Success"),
+        (0, "Failed")
+    ]
+    razorpay_order_id = models.CharField(verbose_name="Razorpay Order id", primary_key=True, max_length=255)
+    razorpay_payment_id = models.CharField(verbose_name="Razorpay Payment id", max_length=255, blank=True)
+    razorpay_signature = models.CharField(verbose_name="Razorpay signature", max_length=255, blank=True)
+    date_donated = models.DateTimeField(verbose_name="Date", blank=True,null=True)
+    amount = models.CharField(verbose_name="Amount", max_length=255)
+    name = models.CharField(verbose_name="Name", max_length=255)
+    email = models.EmailField(verbose_name="Email")
+    phone = models.CharField(verbose_name="Phone", max_length=10)
+    status = models.CharField(verbose_name="Payment status", choices=status_choices, max_length=255,blank=True)
+
+    def __str__(self):
+        return self.name + " " + self.amount

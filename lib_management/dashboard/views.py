@@ -8,7 +8,7 @@ from .models import *
 def dashboard(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
-        return render(request, 'dashboard/layout.html', {'student': student})
+        return render(request, 'dashboard/dashboard.html', {'student': student})
     else:
         return redirect('/')
 
@@ -39,7 +39,8 @@ def profile(request):
 def view_book(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
-        return render(request, 'dashboard/view.html', {'student': student})
+        books = Book.objects.all()
+        return render(request, 'dashboard/view.html', {'student': student, 'books':books})
     else:
         return redirect('/')
 

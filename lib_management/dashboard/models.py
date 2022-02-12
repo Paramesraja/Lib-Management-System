@@ -9,7 +9,7 @@ class Book(models.Model):
     desc = models.TextField(verbose_name="Description")
     publication = models.TextField(verbose_name="Publication")
     isbn = models.CharField(verbose_name="ISBN", max_length=20)
-    picture = models.ImageField(verbose_name="Picture", upload_to='books')
+    picture = models.ImageField(verbose_name="Picture", upload_to='books', blank=True)
 
     def __str__(self):
         return self.bookid + " " + self.title
@@ -34,7 +34,7 @@ class Issue(models.Model):
     roll_no = models.CharField(verbose_name="roll_no", max_length=8)
     copy_no = models.IntegerField(verbose_name="Copy no")
     date_issued = models.DateField(verbose_name="Date Issued", auto_now_add=True)
-    date_returned = models.DateField(verbose_name="Date Returned")
+    date_returned = models.DateField(verbose_name="Date Returned", blank=True)
     renewed = models.BooleanField(verbose_name="Renewed", default=False)
     date_renewed = models.DateField(verbose_name="Date Renewed", blank=True)
 
@@ -53,3 +53,7 @@ class Damage(models.Model):
     copy_no = models.IntegerField(verbose_name="Copy no")
     damaged_on = models.DateField(verbose_name="Damaged on", auto_now_add=True)
     damage_desc = models.TextField(verbose_name="Damage Description")
+
+
+
+
