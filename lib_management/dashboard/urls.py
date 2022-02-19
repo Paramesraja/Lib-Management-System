@@ -7,4 +7,5 @@ urlpatterns = [
     path('profile/', views.profile, name="profile"),
     path('view-book/', views.view_book, name="view_book"),
     path('add-book/', views.add_book, name="add_book"),
+    path('renew/', views.renew, name="renew"),
 ]

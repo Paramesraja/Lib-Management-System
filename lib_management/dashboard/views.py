@@ -18,6 +18,14 @@ def log_out(request):
     return redirect('/')
 
 
+def renew(request):
+    if request.session.get('roll_no'):
+        student = Student.objects.get(roll_no=request.session['roll_no'])
+        return render(request, 'dashboard/renew.html', {'student': student})
+    else:
+        return redirect('/')
+
+
 def profile(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
@@ -58,8 +66,10 @@ def add_book(request):
                 isbn = request.POST['isbn']
                 desc = request.POST['description']
                 copies = request.POST['copies']
+                picture = request.FILES['picture']
 
-                book = Book(bookid=bookid, title=name, price=price, desc=desc, publication=publication, isbn=isbn)
+                book = Book(bookid=bookid, title=name, price=price, desc=desc, publication=publication, isbn=isbn,
+                            picture=picture)
                 book.save()
 
                 for i in range(1, int(copies) + 1):

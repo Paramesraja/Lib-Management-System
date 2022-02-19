@@ -1,73 +1,53 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
 {% block title %}
-View Books
+Library - View books
 {% endblock %}
 {% block body %}
 <section class="section">
+
+
     <div class="row align-items-top" style="display:flex">
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %} " class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <img src="{% static 'dashboard/img/card.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card with an image on top</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
+        {% for book in books%}
+        <div class="col-lg-12">
+            <a href="/me/view-profile/{{book.roll_no.roll_no}}">
+                <div class="card mb-5">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <img src="/media/{{book.picture}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-6" >
+                            <div class="card-body pt-2" >
+                                <p class="card-title pt-1">{{book.title}}</p>
+                                <div class="row g-0">
+                                    <div class="col-md-6" >
+                                        <p class="card-title pt-2" style="display:inline-block;">Author :</p><p class="card-text" style="display:inline-block;">{{book.author}}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">Year Published :</p><p class="card-text" style="display:inline-block;">{{book.pub_year}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="card-title pt-2" style="display:inline-block;">Book edition :</p><p class="card-text" style="display:inline-block;">{{book.book_edition}}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">Department :</p><p class="card-text" style="display:inline-block;">{{book.dept}}</p>
+                                    </div>
+                                </div>
+
+
+                                <p class="card-title pt-2" style="display:inline-block;">Semester :</p><p class="card-text" style="display:inline-block;">{{book.sem}}</p><br>
+
+
+                                <p class="card-text" style="color:#444444;display: -webkit-box;
+                        max-width: 600px;
+                         height:202.19;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;}">{{book.desc}}</p>
+                            </div>
+                        </div>
+                    </div>
+            </a>
         </div>
 
+
+        {% endfor %}
     </div>
 </section>
-{% endblock %}
-
+{% endblock%}
