@@ -50,7 +50,8 @@ def profile(request):
 def view_book(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
-        books = Book.objects.all()
+        books = Book.objects.raw("select * from dashboard_book as d inner join (SELECT bookid_id,group_concat(author)  as auth from dashboard_author GROUP by bookid_id) as e on d.bookid = e.bookid_id inner join (SELECT bookid_id ,count(copy_no) as cou from dashboard_copy  where status = 'Available' group by bookid_id) as a on d.bookid = a.bookid_id ;")
+
         return render(request, 'dashboard/view.html', {'student': student, 'books': books})
     else:
         return redirect('/')
@@ -104,9 +105,10 @@ def view_damage_report(request):
 def report_damage(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
-        return render(request, 'dashboard/report_damage.html', {'student':student})
+        return render(request, 'dashboard/report_damage.html', {'student': student})
     else:
         return redirect('/me')
+
 
 def error404(request, exception):
     return render(request, 'dashboard/404.html')

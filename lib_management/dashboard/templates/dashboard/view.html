@@ -10,7 +10,6 @@ Library - View books
     <div class="row align-items-top" style="display:flex">
         {% for book in books%}
         <div class="col-lg-12">
-            <a href="/me/view-profile/{{book.roll_no.roll_no}}">
                 <div class="card mb-5">
                     <div class="row g-0">
                         <div class="col-md-6">
@@ -21,17 +20,17 @@ Library - View books
                                 <p class="card-title pt-1">{{book.title}}</p>
                                 <div class="row g-0">
                                     <div class="col-md-6" >
-                                        <p class="card-title pt-2" style="display:inline-block;">Author :</p><p class="card-text" style="display:inline-block;">{{book.author}}</p><br>
-                                        <p class="card-title pt-2" style="display:inline-block;">Year Published :</p><p class="card-text" style="display:inline-block;">{{book.pub_year}}</p>
+                                        <p class="card-title pt-2" style="display:inline-block;">Author :</p><p class="card-text" style="display:inline-block;">{{book.auth}}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">Book id :</p><p class="card-text" style="display:inline-block;">{{book.bookid}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="card-title pt-2" style="display:inline-block;">Book edition :</p><p class="card-text" style="display:inline-block;">{{book.book_edition}}</p><br>
-                                        <p class="card-title pt-2" style="display:inline-block;">Department :</p><p class="card-text" style="display:inline-block;">{{book.dept}}</p>
+                                        <p class="card-title pt-2" style="display:inline-block;">Publication :</p><p class="card-text" style="display:inline-block;">{{book.publication}}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">ISBN :</p><p class="card-text" style="display:inline-block;">{{book.isbn}}</p>
                                     </div>
                                 </div>
 
 
-                                <p class="card-title pt-2" style="display:inline-block;">Semester :</p><p class="card-text" style="display:inline-block;">{{book.sem}}</p><br>
+                                <p class="card-title pt-2" style="display:inline-block;">Copies Available :</p><p class="card-text" style="display:inline-block;">{{book.cou}}</p><br>
 
 
                                 <p class="card-text" style="color:#444444;display: -webkit-box;
@@ -43,7 +42,6 @@ Library - View books
                             </div>
                         </div>
                     </div>
-            </a>
         </div>
 
 
