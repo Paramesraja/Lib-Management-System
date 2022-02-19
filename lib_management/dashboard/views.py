@@ -8,7 +8,10 @@ from .models import *
 def dashboard(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
-        return render(request, 'dashboard/dashboard.html', {'student': student})
+        if student.is_admin:
+            return render(request, 'dashboard/ad_dashboard.html', {'student': student})
+        else:
+            return render(request, 'dashboard/dashboard.html', {'student': student})
     else:
         return redirect('/')
 
@@ -48,7 +51,7 @@ def view_book(request):
     if request.session.get('roll_no'):
         student = Student.objects.get(roll_no=request.session['roll_no'])
         books = Book.objects.all()
-        return render(request, 'dashboard/view.html', {'student': student, 'books':books})
+        return render(request, 'dashboard/view.html', {'student': student, 'books': books})
     else:
         return redirect('/')
 
@@ -85,6 +88,25 @@ def add_book(request):
 
     return redirect('/')
 
+
+def view_damage_report(request):
+    if request.session.get('roll_no'):
+        student = Student.objects.get(roll_no=request.session['roll_no'])
+        if student.is_admin:
+            return render(request, 'dashboard/view_damage_report.html', {'student': student})
+        else:
+            return redirect('/me')
+
+    else:
+        return redirect('/me')
+
+
+def report_damage(request):
+    if request.session.get('roll_no'):
+        student = Student.objects.get(roll_no=request.session['roll_no'])
+        return render(request, 'dashboard/report_damage.html', {'student':student})
+    else:
+        return redirect('/me')
 
 def error404(request, exception):
     return render(request, 'dashboard/404.html')

@@ -8,4 +8,6 @@ urlpatterns = [
     path('view-book/', views.view_book, name="view_book"),
     path('add-book/', views.add_book, name="add_book"),
     path('renew/', views.renew, name="renew"),
+    path('view-damage/', views.view_damage_report, name="view_damage"),
+    path('report-damage/', views.report_damage, name="report_damage"),
 ]

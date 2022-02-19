@@ -1,0 +1,43 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+{% block title %}
+Report a Damage
+{% endblock %}
+{% block body %}
+<br><br>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-6">
+        <div class="card ">
+            <div class="card-body mt-4 mb-2">
+                <form class="row g-3">
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="roll_no" placeholder="Roll no">
+                            <label for="roll_no">Roll no</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="bookid" placeholder="Book id">
+                            <label for="bookid">Book id</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="copyno" placeholder="Copy no">
+                            <label for="copyno">Copy no</label>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Issue</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

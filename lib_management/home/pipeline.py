@@ -27,15 +27,18 @@ def create_user(backend, response, *args, **kwargs):
             last_login = datetime.datetime.now()
             user = Student.objects.create(roll_no=roll_no, name=name, mail=email, dept=dept, linkedin=linkedin,
                                           last_login=last_login)
-            template = render_to_string('home/email.html', {'name': name})
-            e_mail = EmailMessage(
-                'Thanks for creating an account in Kart.',  # subject
-                template,  # body
-                'dhanushkumarganapathy@outlook.com',  # host_email,
-                [email],  # receiver
-            )
-            e_mail.fail_silently = False
-            e_mail.send()
+            try:
+                template = render_to_string('home/email.html', {'name': name})
+                e_mail = EmailMessage(
+                    'Thanks for creating an account in Kart.',  # subject
+                    template,  # body
+                    'dhanushkumarganapathy@outlook.com',  # host_email,
+                    [email],  # receiver
+                )
+                e_mail.fail_silently = False
+                e_mail.send()
+            except Exception:
+                pass
             request.session['roll_no'] = user.roll_no
             return
 
