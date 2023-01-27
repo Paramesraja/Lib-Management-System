@@ -15,7 +15,7 @@ def home(request):
     if request.session.get('roll_no'):
         return redirect('/me')
     else:
-        return render(request, 'home/home.html')
+        return render(request, 'home/home2.html')
 
 
 def donate(request):

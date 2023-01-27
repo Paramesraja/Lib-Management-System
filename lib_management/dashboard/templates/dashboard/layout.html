@@ -53,10 +53,9 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
+        <div class="search-form d-flex align-items-center">
+            <input type="text" id="search" name="query" placeholder="Search" title="Enter search keyword">
+        </div>
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
@@ -192,6 +191,16 @@
 </aside><!-- End Sidebar-->
 
 <main id="main" class="main">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {{message.tags}} alert-dismissible fade show" id = "msg" role="alert">
+        <i class="bi bi-exclamation-octagon me-1"></i>
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
     {% block body %}
     {% endblock %}
 
@@ -215,7 +224,15 @@
 
 <!-- Template Main JS File -->
 <script src="{% static '/dashboard/js/main.js' %}"></script>
+<script src="{% static '/dashboard/js/formvalidation.js' %}"></script>
+ <script>
+var message_ele = document.getElementById("msg");
+if (message_ele != null){
+setTimeout(function(){
+   message_ele.style.display = "none";
+}, 5000);}
 
+  </script>
 </body>
 
 </html>

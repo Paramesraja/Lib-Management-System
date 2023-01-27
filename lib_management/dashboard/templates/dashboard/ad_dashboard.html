@@ -8,39 +8,136 @@ Dashboard - Library
 
 
 {% if student.is_admin %}
-<div class="row d-flex justify-content-center">
-    <div class="col-lg-6">
-        <div class="card ">
-            <div class="card-body mt-4 mb-2">
-                <form class="row g-3">
-                    <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="roll_no" placeholder="Roll no">
-                            <label for="roll_no">Roll no</label>
+<section class="section profile" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">
+                                Issue book
+                            </button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Return back
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="card ">
+                                        <div class="card-body mt-4 mb-2">
+                                            <form class="row g-3" onsubmit="return validate();" method="post" action="" >
+                                                {% csrf_token %}
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="roll_no" name="roll_no" placeholder="Roll no" required>
+                                                        <label for="roll_no">Roll no</label>
+                                                        <span id="rollnum_alert" style="color:red;visibility:hidden">Invalid Roll number</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="bookid" name="book_id" placeholder="Book id" required>
+                                                        <label for="bookid">Book id</label>
+                                                        <span id="bookid_alert" style="color:red;visibility:hidden">Invalid Book Id</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="number" class="form-control" min=1 id="copyno" name="copy_no" placeholder="Copy no" required>
+                                                        <label for="copyno">Copy no</label>
+                                                        <span id="copynum_alert" style="color:red;visibility:hidden">Invalid Copy Number</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button type="submit" name="issue" class="btn btn-primary">Issue</button>
+                                                    <button type="reset" class="btn btn-secondary">Reset</button>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="bookid" placeholder="Book id">
-                            <label for="bookid">Book id</label>
+
+                        <!--issue tab ends here-->
+
+
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="card ">
+                                        <div class="card-body mt-4 mb-2">
+                                            <form class="row g-3" onsubmit="return backtolib_validate();" method="post" action="">
+                                                {% csrf_token %}
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="backtolib_roll_no" name="roll_no" placeholder="Roll no" required>
+                                                        <label for="roll_no">Roll no</label>
+                                                        <span id="backtolib_rollnum_alert" style="color:red;visibility:hidden">Invalid Roll number</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="backtolib_bookid" name="book_id" placeholder="Book id" required>
+                                                        <label for="bookid">Book id</label>
+                                                        <span id="backtolib_bookid_alert" style="color:red;visibility:hidden">Invalid Book Id</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-floating">
+                                                        <input type="number" class="form-control" min=1 id="backtolib_copyno" name="copy_no" placeholder="Copy no" required>
+                                                        <label for="copyno">Copy no</label>
+                                                        <span id="backtolib_copynum_alert" style="color:red;visibility:hidden">Invalid Copy Number</span>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+
+                                                    <button type="submit" name="backtolib" class="btn btn-primary">Back to library</button>
+                                                    <button type="reset" class="btn btn-secondary">Reset</button>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="copyno" placeholder="Copy no">
-                            <label for="copyno">Copy no</label>
+
+                         <!--return back ends here-->
+
+
+
+                        <!--
+                            <div class="tab-pane fade pt-3" id="profile-settings">
                         </div>
+                        -->
+
                     </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Issue</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                    </div>
-                </form>
+                </div><!-- End Bordered Tabs -->
+
             </div>
         </div>
+
     </div>
-</div>
+    </div>
+</section>
 
 
 <section class="section">
@@ -54,33 +151,79 @@ Dashboard - Library
                     <table class="table datatable" style=" overflow:hidden;overflow-y: scroll;">
                         <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Edition</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Roll no</th>
+                            <th scope="col">Book id</th>
+                            <th scope="col">Book name</th>
+                            <th scope="col">Copy no</th>
+                            <th scope="col">Renewed Status</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% for book in books %}
+                        {% for book in to_be_returned %}
 
                         <tr>
-                            <td>{{book.title}}</td>
-                            <td>{{book.author}}</td>
-                            <td>{{book.book_edition}}</td>
-                            <td>{{book.date_posted}}</td>
-                            <td>
-                                <form method="post" action="">
-                                    {% csrf_token %}
-                                    <button type="submit" value="{{book.id}}" name="hide" class="btn btn-danger mb-2">
-                                        Hide
-                                    </button>
-                                </form>
-                            </td>
+                            <td>{{book.roll_no}}</td>
+                            <td>{{book.bookid.bookid}}</td>
+                            <td>{{book.bookid.title}}</td>
+                            <td>{{book.copy_no}}</td>
+                            <td>{{book.renewed}}</td>
+                            <td></td>
                         </tr>
 
 
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Books that are not returned after due!</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable" style=" overflow:hidden;overflow-y: scroll;">
+                        <thead>
+                        <tr>
+                            <th scope="col">Roll No</th>
+                            <th scope="col">BookID</th>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Copy num</th>
+                            <th scope="col">Renewed</th>
+                            <th scope="col">Date Issued</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--{1:{rollno:20bcs063,bookid:5},...}  dict[key]=value-->
+                        {% for x,y in d.items %}
+                        
+                        
+
+                        <tr>
+                            {% for k,v in y.items %}
+                            <td>{{v}}</td>
+                            
+                            {% endfor %}
+                        </tr>
+
+
+                        
                         {% endfor %}
 
                         </tbody>
@@ -93,5 +236,7 @@ Dashboard - Library
         </div>
     </div>
 </section>
+
+
 {% endif %}
 {% endblock %}

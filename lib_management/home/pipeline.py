@@ -30,7 +30,7 @@ def create_user(backend, response, *args, **kwargs):
             try:
                 template = render_to_string('home/email.html', {'name': name})
                 e_mail = EmailMessage(
-                    'Thanks for creating an account in Kart.',  # subject
+                    'Thanks for creating an account',  # subject
                     template,  # body
                     'dhanushkumarganapathy@outlook.com',  # host_email,
                     [email],  # receiver

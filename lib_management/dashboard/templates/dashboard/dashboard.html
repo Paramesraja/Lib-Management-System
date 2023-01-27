@@ -10,38 +10,51 @@ Damage Reports
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Books that you have lended</h5>
+                    <h5 class="card-title">Books that you have got</h5>
                     <!-- Table with stripped rows -->
                     <table class="table datatable" style=" overflow:hidden;overflow-y: scroll;">
                         <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Edition</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Roll number</th>
+                            <th scope="col">Book ID</th>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Copy no</th>
+                            <th scope="col">Date issued</th>
+                            
+                            <th scope="col">Renewed</th>
+                            <th scope="col">Due date</th>
+                            <th scope="col">Date returned</th>
+                            
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% for book in books %}
+                        <!-- {% for i in iss %}
 
                         <tr>
-                            <td>{{book.title}}</td>
-                            <td>{{book.author}}</td>
-                            <td>{{book.book_edition}}</td>
-                            <td>{{book.date_posted}}</td>
-                            <td>
-                                <form method="post" action="">
-                                    {% csrf_token %}
-                                    <button type="submit" value="{{book.id}}" name="hide" class="btn btn-danger mb-2">
-                                        Hide
-                                    </button>
-                                </form>
-                            </td>
+                            <td>{{i.bookid.bookid}}</td>
+                            <td>{{i.bookid.title}}</td>
+                            <td>{{i.copy_no}}</td>
+                            <td>{{i.date_issued}}</td>
+                            <td>{{i.date_returned}}</td>
+                            <td>{{i.renewed}}</td>
                         </tr>
 
 
+                        {% endfor %} -->
+                        {% for x,y in d.items %}
+                        
+                        
+
+                        <tr>
+                            {% for k,v in y.items %}
+                            <td>{{v}}</td>
+                            
+                            {% endfor %}
+                        </tr>
+
+
+                        
                         {% endfor %}
 
                         </tbody>

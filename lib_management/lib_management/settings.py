@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-hxxh))=7bo96(bk)gvd$bwu__n!j9yw++pbpz+q@$s)rmzwxsn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -43,6 +44,9 @@ INSTALLED_APPS = [
     # custom apps
     'home',
     'dashboard',
+
+    #data import export
+    # 'import_export',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -134,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -175,3 +179,21 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 RAZOR_KEY_ID = 'rzp_test_u7deuTCyVkMz9G'
 RAZOR_KEY_SECRET = 'R1GpzfJTzkDwVJpt2O0kHdsI'
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+
+# Celery Configuration Options
+CELERY_TIMEZONE = 'Asia/Kolkata'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True

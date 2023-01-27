@@ -5,6 +5,11 @@
 * License: https://bootstrapmade.com/license/
 */
 
+/*added one*/
+#imageofbook {
+  height: 50vh;
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -28,7 +33,12 @@ a:hover {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Nunito", sans-serif;
 }
 
@@ -110,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100vw !important;
   }
 }
-.dropdown-menu .dropdown-header, .dropdown-menu .dropdown-footer {
+.dropdown-menu .dropdown-header,
+.dropdown-menu .dropdown-footer {
   text-align: center;
   font-size: 15px;
   padding: 10px 25px;
@@ -221,7 +232,8 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.card-header, .card-footer {
+.card-header,
+.card-footer {
   border-color: #ebeef4;
   background-color: #fff;
   color: #798eb3;
@@ -325,7 +337,8 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   color: #2c384e;
 }
-.nav-tabs-bordered .nav-link:hover, .nav-tabs-bordered .nav-link:focus {
+.nav-tabs-bordered .nav-link:hover,
+.nav-tabs-bordered .nav-link:focus {
   color: #4154f1;
 }
 .nav-tabs-bordered .nav-link.active {
@@ -409,7 +422,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   width: 100%;
 }
-.header .search-form input:focus, .header .search-form input:hover {
+.header .search-form input:focus,
+.header .search-form input:hover {
   outline: none;
   box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
   border: 1px solid rgba(1, 41, 112, 0.3);
@@ -563,7 +577,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 1200px) {
-  #main, #footer {
+  #main,
+  #footer {
     margin-left: 300px;
   }
 }
@@ -573,7 +588,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 @media (min-width: 1200px) {
-  .toggle-sidebar #main, .toggle-sidebar #footer {
+  .toggle-sidebar #main,
+  .toggle-sidebar #footer {
     margin-left: 0;
   }
   .toggle-sidebar .sidebar {
@@ -659,7 +675,8 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
   border-radius: 50%;
 }
-.sidebar-nav .nav-content a:hover, .sidebar-nav .nav-content a.active {
+.sidebar-nav .nav-content a:hover,
+.sidebar-nav .nav-content a.active {
   color: #4154f1;
 }
 .sidebar-nav .nav-content a.active i {
@@ -682,7 +699,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   font-size: 16px;
 }
-.dashboard .filter .icon:hover, .dashboard .filter .icon:focus {
+.dashboard .filter .icon:hover,
+.dashboard .filter .icon:focus {
   color: #4154f1;
 }
 .dashboard .filter .dropdown-header {
@@ -987,13 +1005,15 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-.contact .php-email-form input, .contact .php-email-form textarea {
+.contact .php-email-form input,
+.contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
   border-radius: 0;
 }
-.contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
   border-color: #4154f1;
 }
 .contact .php-email-form input {
@@ -1002,7 +1022,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .php-email-form textarea {
   padding: 12px 15px;
 }
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #4154f1;
   border: 0;
   padding: 10px 30px;
@@ -1010,7 +1030,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.4s;
   border-radius: 4px;
 }
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #5969f3;
 }
 @-webkit-keyframes animate-loading {

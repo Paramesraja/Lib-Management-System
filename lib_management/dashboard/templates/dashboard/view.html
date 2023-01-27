@@ -7,30 +7,103 @@ Library - View books
 <section class="section">
 
 
-    <div class="row align-items-top" style="display:flex">
+    <div class="row align-items-top" style="display:flex" id="books">
         {% for book in books%}
         <div class="col-lg-12">
+            <div class="card mb-5">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="/media/{{book.picture}}" id="imageofbook" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body pt-2">
+                            <p class="card-title pt-1">{{book.title}}</p>
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <p class="card-title pt-2" style="display:inline-block;">Author :</p>
+                                    <p class="card-text" style="display:inline-block;">{{book.auth}}</p><br>
+                                    <p class="card-title pt-2" style="display:inline-block;">Book id :</p>
+                                    <p class="card-text" style="display:inline-block;">{{book.bookid}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-title pt-2" style="display:inline-block;">Publication :</p>
+                                    <p class="card-text" style="display:inline-block;">{{book.publication}}</p><br>
+                                    <p class="card-title pt-2" style="display:inline-block;">ISBN :</p>
+                                    <p class="card-text" style="display:inline-block;">{{book.isbn}}</p>
+                                </div>
+                            </div>
+
+
+                            <p class="card-title pt-2" style="display:inline-block;">No of copies Available :</p>
+                            <p class="card-text" style="display:inline-block;">{{book.cou}}</p><br>
+
+
+                            <p class="card-text" style="color:#444444;display: -webkit-box;
+                        max-width: 600px;
+                         height:202.19;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;">{{book.desc}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script>
+    const data = '{{books_json}}';
+
+    const rdata =  JSON.parse(data.replace(/&quot;/g, '"'))
+    console.log(rdata)
+    console.log(typeof(rdata))
+
+
+    let input = document.getElementById('search')
+    input.addEventListener('keyup',function(event){
+        console.log(event.target.value);
+    })
+
+    arr = []
+    for(var i in rdata){
+    arr.push(rdata[i]);}
+    console.log(arr);
+    let filterArr = []
+    input.addEventListener('keyup', (e)=>{
+    books.innerHTML = ""
+
+    filteredArr = arr.filter((info) =>info['title'].toLowerCase().includes(e.target.value.toLowerCase())||
+    info['auth'].toLowerCase().includes(e.target.value.toLowerCase())||
+    info['bookid'].toLowerCase().includes(e.target.value.toLowerCase()))
+    console.log(filteredArr)
+    if(filteredArr.length>0){
+    filteredArr.map(item =>{
+    books.innerHTML += `
+    <div class="col-lg-12">
                 <div class="card mb-5">
                     <div class="row g-0">
                         <div class="col-md-6">
-                            <img src="/media/{{book.picture}}" class="img-fluid rounded-start" alt="...">
+                            <img src="/media/${item['picture']}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-6" >
                             <div class="card-body pt-2" >
-                                <p class="card-title pt-1">{{book.title}}</p>
+                                <p class="card-title pt-1">${item['title']}</p>
                                 <div class="row g-0">
                                     <div class="col-md-6" >
-                                        <p class="card-title pt-2" style="display:inline-block;">Author :</p><p class="card-text" style="display:inline-block;">{{book.auth}}</p><br>
-                                        <p class="card-title pt-2" style="display:inline-block;">Book id :</p><p class="card-text" style="display:inline-block;">{{book.bookid}}</p>
+                                        <p class="card-title pt-2" style="display:inline-block;">Author :</p><p class="card-text" style="display:inline-block;">${item['auth']}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">Book id :</p><p class="card-text" style="display:inline-block;">${item['bookid']}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="card-title pt-2" style="display:inline-block;">Publication :</p><p class="card-text" style="display:inline-block;">{{book.publication}}</p><br>
-                                        <p class="card-title pt-2" style="display:inline-block;">ISBN :</p><p class="card-text" style="display:inline-block;">{{book.isbn}}</p>
+                                        <p class="card-title pt-2" style="display:inline-block;">Publication :</p><p class="card-text" style="display:inline-block;">${item['publication']}</p><br>
+                                        <p class="card-title pt-2" style="display:inline-block;">ISBN :</p><p class="card-text" style="display:inline-block;">${item['isbn']}</p>
                                     </div>
                                 </div>
 
 
-                                <p class="card-title pt-2" style="display:inline-block;">Copies Available :</p><p class="card-text" style="display:inline-block;">{{book.cou}}</p><br>
+                                <p class="card-title pt-2" style="display:inline-block;">No of copies Available :</p><p class="card-text" style="display:inline-block;">${item['cou']}</p><br>
 
 
                                 <p class="card-text" style="color:#444444;display: -webkit-box;
@@ -38,14 +111,16 @@ Library - View books
                          height:202.19;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
-                        overflow: hidden;}">{{book.desc}}</p>
+                        overflow: hidden;}">${item['desc']}</p>
                             </div>
                         </div>
                     </div>
-        </div>
+                </div>
+        </div>`
+    })
 
+    }
+    })
 
-        {% endfor %}
-    </div>
-</section>
+</script>
 {% endblock%}

@@ -1,7 +1,7 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
 {% block title %}
-Dashboard - Library
+Dashboard - Renew
 {% endblock %}
 {% block body %}
 <br><br><br><br><br><br>
@@ -10,28 +10,32 @@ Dashboard - Library
     <div class="col-lg-6">
         <div class="card ">
             <div class="card-body mt-4 mb-2">
-                <form class="row g-3">
+                <form class="row g-3" onsubmit="return renew_validate();" method="post" action="">
+                    {% csrf_token %}
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="roll_no" placeholder="Roll no">
+                            <input type="text" class="form-control" id="renew_roll_no" value="{{student.roll_no}}" disabled name="roll_no" placeholder="Roll no">
                             <label for="roll_no">Roll no</label>
+                            <span id="renew_rollnum_alert" style="color:red;visibility:hidden">Invalid Roll number</span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="bookid" placeholder="Book id">
-                            <label for="bookid">Book id</label>
+                            <input type="text" class="form-control" id="renew_bookid" name="book_id" placeholder="Book id">
+                            <label for="book_id">Book id</label>
+                            <span id="renew_bookid_alert" style="color:red;visibility:hidden">Invalid Book Id</span>
                         </div>
                     </div>
                      <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="copyno" placeholder="Copy no">
-                            <label for="copyno">Copy no</label>
+                            <input type="text" class="form-control" id="ewnew_copyno" name="copy_no" placeholder="Copy no">
+                            <label for="copy_no">Copy no</label>
+                            <span id="renew_copynum_alert" style="color:red;visibility:hidden">Invalid Copy Number</span>
                         </div>
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Issue</button>
+                        <button type="submit" class="btn btn-primary">Renew</button>
                         <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </form>

@@ -15,27 +15,32 @@ Damage Reports
                     <table class="table datatable" style=" overflow:hidden;overflow-y: scroll;">
                         <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Edition</th>
-                            <th scope="col">Date Posted</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Book id</th>
+                            <th scope="col">Copy No</th>
+                            <th scope="col">Damaged by</th>
+                            <th scope="col">Damaged on</th>
+                            <th scope="col">Damage Desc</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        {% for book in books %}
+                        {% for d in damage %}
 
                         <tr>
-                            <td>{{book.title}}</td>
-                            <td>{{book.author}}</td>
-                            <td>{{book.book_edition}}</td>
-                            <td>{{book.date_posted}}</td>
+                            <td>{{d.bookid.bookid}}</td>
+                            <td>{{d.copy_no}}</td>
+                            <td>{{d.roll_no}}</td>
+                            <td>{{d.damaged_on}}</td>
+                            <td>{{d.damage_desc}}</td>
                             <td>
-                                <form method="post" action="">
+                                <form method="post" action="send-mail">
                                     {% csrf_token %}
-                                    <button type="submit" value="{{book.id}}" name="hide" class="btn btn-danger mb-2">
-                                        Hide
+                                    <input type="hidden" name="book_id" value="{{d.bookid.bookid}}">
+                                    <input type="hidden" name="copy_no" value="{{d.copy_no}}">
+                                    <input type="hidden" name="roll_no" value="{{d.roll_no}}">
+                                    <button type="submit"  name="damage" class="btn btn-primary mb-2">
+                                        Send Mail
                                     </button>
                                 </form>
                             </td>

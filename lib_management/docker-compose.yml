@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+   app:
+    container_name: lib_management
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
